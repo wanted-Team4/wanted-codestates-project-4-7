@@ -1,15 +1,28 @@
+import { useState } from 'react';
 import styled from "styled-components";
 import Form from "../components/FieldForm/Form";
 
 const NewForm = () => {
+  const [formList, setFormList] = useState([{ formId: 1 }])
+
+  const handleAddForm = () => {
+    setFormList(formId => [...formId, { formId: Date.now() }])
+  }
+
   return (
     <Container>
       <InnerBox>
         <Text>제목*</Text>
         <TitleInput></TitleInput>
         <Text>필드목록*</Text>
-        <Form />
-        <SubmitBtn>필드 추가하기</SubmitBtn>
+        {formList.map((form) => (
+          <Form
+            key={form.formId}
+            form={form}
+            setFormList={setFormList}
+          />
+        ))}
+        <SubmitBtn onClick={handleAddForm}>필드 추가하기</SubmitBtn>
         <BtnBox>
           <OpenBtn>폼 열기</OpenBtn>
           <CreateBtn>저장하기</CreateBtn>

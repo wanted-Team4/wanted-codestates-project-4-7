@@ -2,10 +2,10 @@ import styled from "styled-components";
 import FieldHeader from './FieldHeader'
 import Editor from "./Editor";
 
-const Form = () => {
+const Form = ({ setFormList, form }) => {
   return (
     <Container>
-      <FieldHeader />
+      <FieldHeader setFormList={setFormList} form={form} />
       <Input
         // value={placeholder}
         placeholder="예시를 입력해주세요."
@@ -19,6 +19,7 @@ export default Form;
 
 const Container = styled.div`
   border-top: 1px solid #D1D1D1;
+  margin-top: 1rem;
 `
 
 const Input = styled.input`
