@@ -2,14 +2,24 @@ import styled from "styled-components";
 import FieldHeader from './FieldHeader'
 import Editor from "./Editor";
 
-const Form = ({ setFormList, form }) => {
+const Form = ({ setFormList, form, labelRef }) => {
+
   return (
     <Container>
-      <FieldHeader setFormList={setFormList} form={form} />
-      <Input
-        // value={placeholder}
-        placeholder="예시를 입력해주세요."
+      <FieldHeader
+        setFormList={setFormList}
+        form={form}
+        labelRef={labelRef}
       />
+      {form.type === 'text' || form.type === 'phone' ?
+        (<Input
+          // value={placeholder}
+          placeholder="예시를 입력해주세요."
+        />) : form.type === 'select' ? (
+          <Input
+            placeholder="태그를 ',' 구분해서 입력해주세요"
+          />
+        ) : null}
       <Editor />
     </Container>
   );
@@ -17,7 +27,7 @@ const Form = ({ setFormList, form }) => {
 
 export default Form;
 
-const Container = styled.div`
+const Container = styled.form`
   border-top: 1px solid #D1D1D1;
   margin-top: 1rem;
 `

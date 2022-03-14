@@ -1,31 +1,46 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styled from "styled-components";
 import Form from "../components/FieldForm/Form";
 
 const NewForm = () => {
-  const [formList, setFormList] = useState([{ formId: 1 }])
+  const titleRef = useRef();
+  const labelRef = useRef();
+
+  const [formList, setFormList] = useState([{ formId: 1, type: 'text' }])
 
   const handleAddForm = () => {
-    setFormList(formId => [...formId, { formId: Date.now() }])
+    setFormList(formId => [...formId, { formId: Date.now(), type: 'text' }])
   }
+
+  const onSubmit = () => {
+    console.log(titleRef.current.value)
+    console.log(labelRef.current.value) // 확인 필요
+    console.log(formList[0].type)
+    // console.log(form.type) // 필수 체크 여부
+    // console.log(form.type) // 플레이스 홀더 값
+    // console.log(form.type) // 텍스트 내용 있을 경우
+  }
+
+  console.log(formList)
 
   return (
     <Container>
       <InnerBox>
         <Text>제목*</Text>
-        <TitleInput></TitleInput>
+        <TitleInput ref={titleRef} />
         <Text>필드목록*</Text>
         {formList.map((form) => (
           <Form
             key={form.formId}
             form={form}
             setFormList={setFormList}
+            labelRef={labelRef}
           />
         ))}
         <SubmitBtn onClick={handleAddForm}>필드 추가하기</SubmitBtn>
         <BtnBox>
           <OpenBtn>폼 열기</OpenBtn>
-          <CreateBtn>저장하기</CreateBtn>
+          <CreateBtn onClick={onSubmit}>저장하기</CreateBtn>
         </BtnBox>
       </InnerBox>
     </Container>

@@ -1,13 +1,28 @@
 import styled from "styled-components";
+import { useState } from 'react';
 
-const FieldHeader = ({ setFormList, form }) => {
+const FieldHeader = ({ setFormList, form, labelRef }) => {
+  const [selected, setSelected] = useState(form.type);
+  const [label, setLabel] = useState('');
+
   const handleDeleteForm = () => {
     setFormList(forms => forms.filter(item => item.formId !== form.formId))
   }
 
+  const handleTypeChange = (e) => {
+    const newType = e.target.value;
+    setSelected(newType)
+    setFormList(forms => forms.filter(item => item.formId !== form.formId))
+    setFormList(formId => [...formId, { formId: Date.now(), type: newType }])
+  };
+
+  const handleLabelChange = () => {
+    setLabel(labelRef.current.value)
+  }
+
   return (
     <Container>
-      <Select name="type">
+      <Select name="type" value={selected} onChange={handleTypeChange}>
         <Option value="text">텍스트</Option>
         <Option value="phone">전화번호</Option>
         <Option value="address">주소</Option>
@@ -15,7 +30,7 @@ const FieldHeader = ({ setFormList, form }) => {
         <Option value="file">첨부파일</Option>
         <Option value="agreement">이용약관</Option>
       </Select>
-      <Input type="text" />
+      <Input type="text" ref={labelRef} onChange={(e) => handleLabelChange(e)} />
       <Label><CheckBox type="checkbox" />필수</Label>
       <DragBtn><i className="fa-solid fa-arrows-up-down"></i></DragBtn>
       <DeleteBtn onClick={handleDeleteForm}><i className="fa-solid fa-xmark"></i></DeleteBtn>
