@@ -1,6 +1,26 @@
 import styled from "styled-components";
 import Form from "../components/FieldForm/Form";
 
+const NewForm = () => {
+  return (
+    <Container>
+      <InnerBox>
+        <Text>제목*</Text>
+        <TitleInput></TitleInput>
+        <Text>필드목록*</Text>
+        <Form />
+        <SubmitBtn>필드 추가하기</SubmitBtn>
+        <BtnBox>
+          <OpenBtn>폼 열기</OpenBtn>
+          <CreateBtn>저장하기</CreateBtn>
+        </BtnBox>
+      </InnerBox>
+    </Container>
+  );
+}
+
+export default NewForm;
+
 const Container = styled.div`
   width: 60%;
   margin: 0 auto;
@@ -55,23 +75,3 @@ const CreateBtn = styled.button`
   cursor: pointer;
   border: 1px solid #0028FF;
 `
-
-const NewForm = () => {
-  return (
-    <Container>
-      <InnerBox>
-        <Text>제목*</Text>
-        <TitleInput></TitleInput>
-        <Text>필드목록*</Text>
-        <Form />
-        <SubmitBtn>필드 추가하기</SubmitBtn>
-        <BtnBox>
-          <OpenBtn>폼 열기</OpenBtn>
-          <CreateBtn>저장하기</CreateBtn>
-        </BtnBox>
-      </InnerBox>
-    </Container>
-  );
-}
-
-export default NewForm;
