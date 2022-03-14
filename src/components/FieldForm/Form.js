@@ -2,14 +2,23 @@ import styled from "styled-components";
 import FieldHeader from './FieldHeader'
 import Editor from "./Editor";
 
-const Form = ({ setFormList, form }) => {
+const Form = ({ setFormList, form, labelRef }) => {
+  console.log(form)
+
   return (
     <Container>
-      <FieldHeader setFormList={setFormList} form={form} />
-      <Input
-        // value={placeholder}
-        placeholder="예시를 입력해주세요."
+      <FieldHeader
+        setFormList={setFormList}
+        form={form}
+        labelRef={labelRef}
       />
+      {form.type === 'text' || form.type === 'phone' ?
+        (<Input
+          // value={placeholder}
+          placeholder="예시를 입력해주세요."
+        />) : form.type === 'select' ? (
+          <>태그</>
+        ) : null}
       <Editor />
     </Container>
   );

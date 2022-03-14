@@ -1,25 +1,31 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import styled from "styled-components";
 import Form from "../components/FieldForm/Form";
 
 const NewForm = () => {
-  const [formList, setFormList] = useState([{ formId: 1 }])
+  const titleRef = useRef();
+  const labelRef = useRef();
+
+  const [formList, setFormList] = useState([{ formId: 1, type: 'text' }])
 
   const handleAddForm = () => {
-    setFormList(formId => [...formId, { formId: Date.now() }])
+    setFormList(formId => [...formId, { formId: Date.now(), type: 'text' }])
   }
+
+  console.log(formList)
 
   return (
     <Container>
       <InnerBox>
         <Text>제목*</Text>
-        <TitleInput></TitleInput>
+        <TitleInput ref={titleRef} />
         <Text>필드목록*</Text>
         {formList.map((form) => (
           <Form
             key={form.formId}
             form={form}
             setFormList={setFormList}
+            labelRef={labelRef}
           />
         ))}
         <SubmitBtn onClick={handleAddForm}>필드 추가하기</SubmitBtn>
