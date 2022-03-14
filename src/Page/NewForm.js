@@ -5,11 +5,29 @@ import Form from "../components/FieldForm/Form";
 const NewForm = () => {
   const titleRef = useRef();
   const labelRef = useRef();
+  const [checked, setChecked] = useState(false);
 
-  const [formList, setFormList] = useState([{ formId: 1, type: 'text' }])
+  const [formList, setFormList] = useState(
+    [
+      {
+        formId: 1,
+        type: 'text',
+        required: false,
+        label: '',
+        placeholder: '',
+        description: ''
+      }
+    ]);
 
   const handleAddForm = () => {
-    setFormList(formId => [...formId, { formId: Date.now(), type: 'text' }])
+    setFormList(formId => [...formId, {
+      formId: Date.now(),
+      type: 'text',
+      required: false,
+      label: '',
+      placeholder: '',
+      description: ''
+    }]);
   }
 
   const onSubmit = () => {
