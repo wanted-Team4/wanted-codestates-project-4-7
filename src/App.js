@@ -1,16 +1,20 @@
 import styled from "styled-components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Provider } from "react-redux";
 import Home from "./Page/Home";
+import store from "./store/store";
 
 const App = () => {
   return (
     <>
       <BrowserRouter>
-        <Container>
-          <Routes>
-            <Route exact path="/" element={<Home />} />
-          </Routes>
-        </Container>
+        <Provider store={store}>
+          <Container>
+            <Routes>
+              <Route exact path="/" element={<Home />} />
+            </Routes>
+          </Container>
+        </Provider>
       </BrowserRouter>
     </>
   );
