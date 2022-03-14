@@ -3,7 +3,6 @@ import FieldHeader from './FieldHeader'
 import Editor from "./Editor";
 
 const Form = ({ setFormList, form, labelRef }) => {
-  console.log(form)
 
   return (
     <Container>
@@ -17,7 +16,9 @@ const Form = ({ setFormList, form, labelRef }) => {
           // value={placeholder}
           placeholder="예시를 입력해주세요."
         />) : form.type === 'select' ? (
-          <>태그</>
+          <Input
+            placeholder="태그를 ',' 구분해서 입력해주세요"
+          />
         ) : null}
       <Editor />
     </Container>
@@ -26,7 +27,7 @@ const Form = ({ setFormList, form, labelRef }) => {
 
 export default Form;
 
-const Container = styled.div`
+const Container = styled.form`
   border-top: 1px solid #D1D1D1;
   margin-top: 1rem;
 `
