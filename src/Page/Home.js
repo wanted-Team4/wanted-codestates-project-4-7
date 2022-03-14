@@ -15,7 +15,7 @@ const Home = () => {
         <Container>
             <Header>
                 <h1>설문지 목록 (홈)</h1>
-                <span onClick={() => navigate('/createdform')}>
+                <span onClick={() => navigate('/create')}>
                     <i class="fa-solid fa-plus"></i>
                 </span>
             </Header>
@@ -26,7 +26,7 @@ const Home = () => {
                     <span onClick={() => navigate('/submission')}>
                         <i class="fa-solid fa-list"></i>
                     </span>
-                    <span onClick={() => navigate('/#2')}>
+                    <span onClick={() => navigate('#')}>
                         <i class="fa-solid fa-trash-can"></i>
                     </span>
                 </div>
@@ -36,6 +36,8 @@ const Home = () => {
 };
 
 export default Home;
+
+const FormBtn = styled.button``;
 
 const Container = styled.div`
     margin: 0 auto;
