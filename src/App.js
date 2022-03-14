@@ -4,6 +4,7 @@ import { Provider } from 'react-redux';
 import Home from './Page/Home';
 import store from './store/store';
 import Submission from './Page/Submission';
+import NewForm from "./Page/NewForm";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
             <Routes>
               <Route exact path='/' element={<Home />} />
               <Route exact path='/submission' element={<Submission />} />
+               <Route exact path="/" element={<NewForm />} />
             </Routes>
           </Container>
         </Provider>
