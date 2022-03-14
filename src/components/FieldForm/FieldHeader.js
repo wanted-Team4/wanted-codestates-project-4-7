@@ -1,6 +1,10 @@
 import styled from "styled-components";
 
-const FieldHeader = () => {
+const FieldHeader = ({ setFormList, form }) => {
+  const handleDeleteForm = () => {
+    setFormList(forms => forms.filter(item => item.formId !== form.formId))
+  }
+
   return (
     <Container>
       <Select name="type">
@@ -14,7 +18,7 @@ const FieldHeader = () => {
       <Input type="text" />
       <Label><CheckBox type="checkbox" />필수</Label>
       <DragBtn><i className="fa-solid fa-arrows-up-down"></i></DragBtn>
-      <DeleteBtn><i className="fa-solid fa-xmark"></i></DeleteBtn>
+      <DeleteBtn onClick={handleDeleteForm}><i className="fa-solid fa-xmark"></i></DeleteBtn>
     </Container>
   );
 }
