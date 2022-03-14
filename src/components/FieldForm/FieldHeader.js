@@ -30,7 +30,11 @@ const FieldHeader = ({ setFormList, form, labelRef }) => {
         <Option value="file">첨부파일</Option>
         <Option value="agreement">이용약관</Option>
       </Select>
-      <Input type="text" ref={labelRef} onChange={(e) => handleLabelChange(e)} />
+      {form.type === 'phone' ? (
+        <Input type="text" ref={labelRef} onChange={(e) => handleLabelChange(e)} />
+      ) : (
+        <Input type="text" ref={labelRef} onChange={(e) => handleLabelChange(e)} />
+      )}
       <Label><CheckBox type="checkbox" />필수</Label>
       <DragBtn><i className="fa-solid fa-arrows-up-down"></i></DragBtn>
       <DeleteBtn onClick={handleDeleteForm}><i className="fa-solid fa-xmark"></i></DeleteBtn>
