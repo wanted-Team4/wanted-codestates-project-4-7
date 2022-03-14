@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Home from "./Page/Home";
+import NewForm from "./Page/NewForm";
 
 const App = () => {
   return (
@@ -8,7 +9,8 @@ const App = () => {
       <BrowserRouter>
         <Container>
           <Routes>
-            <Route exact path="/" element={<Home />} />
+            {/* <Route exact path="/" element={<Home />} /> */}
+            <Route exact path="/" element={<NewForm />} />
           </Routes>
         </Container>
       </BrowserRouter>
