@@ -1,5 +1,26 @@
 import styled from "styled-components";
 
+const FieldHeader = () => {
+  return (
+    <Container>
+      <Select name="type">
+        <Option value="text">텍스트</Option>
+        <Option value="phone">전화번호</Option>
+        <Option value="address">주소</Option>
+        <Option value="select">드롭다운</Option>
+        <Option value="file">첨부파일</Option>
+        <Option value="agreement">이용약관</Option>
+      </Select>
+      <Input type="text" />
+      <Label><CheckBox type="checkbox" />필수</Label>
+      <DragBtn><i className="fa-solid fa-arrows-up-down"></i></DragBtn>
+      <DeleteBtn><i className="fa-solid fa-xmark"></i></DeleteBtn>
+    </Container>
+  );
+}
+
+export default FieldHeader;
+
 const Container = styled.div`
   width: 25rem;
   height: 1.8rem;
@@ -48,24 +69,3 @@ const DeleteBtn = styled.div`
   border-right: 1px solid #FF6464;
   cursor: pointer;
 `
-
-const FieldHeader = () => {
-  return (
-    <Container>
-      <Select name="type">
-        <Option value="text">텍스트</Option>
-        <Option value="phone">전화번호</Option>
-        <Option value="address">주소</Option>
-        <Option value="select">드롭다운</Option>
-        <Option value="file">첨부파일</Option>
-        <Option value="agreement">이용약관</Option>
-      </Select>
-      <Input type="text" />
-      <Label><CheckBox type="checkbox" />필수</Label>
-      <DragBtn><i className="fa-solid fa-arrows-up-down"></i></DragBtn>
-      <DeleteBtn><i className="fa-solid fa-xmark"></i></DeleteBtn>
-    </Container>
-  );
-}
-
-export default FieldHeader;

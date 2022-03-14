@@ -2,21 +2,6 @@ import styled from "styled-components";
 import FieldHeader from './FieldHeader'
 import Editor from "./Editor";
 
-const Container = styled.div`
-  border-top: 1px solid #D1D1D1;
-`
-
-const Input = styled.input`
-  width: 25rem;
-  height: 1.8rem;
-  box-sizing: border-box;
-  border: none;
-  border-top: 1px solid #D1D1D1;
-  border-left: 1px solid #D1D1D1;
-  border-right: 1px solid #D1D1D1;
-  outline: 0;
-`
-
 const Form = () => {
   return (
     <Container>
@@ -31,3 +16,18 @@ const Form = () => {
 }
 
 export default Form;
+
+const Container = styled.div`
+  border-top: 1px solid #D1D1D1;
+`
+
+const Input = styled.input`
+  width: 25rem;
+  height: 1.8rem;
+  box-sizing: border-box;
+  border: none;
+  border-top: 1px solid #D1D1D1;
+  border-left: 1px solid #D1D1D1;
+  border-right: 1px solid #D1D1D1;
+  outline: 0;
+`

@@ -2,11 +2,6 @@ import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import styled from "styled-components";
 
-const Container = styled.div`
-  width: 25rem;
-  margin: 0 auto;
-`
-
 const Editor = () => {
   return (
     <Container>
@@ -23,3 +18,8 @@ const Editor = () => {
 }
 
 export default Editor;
+
+const Container = styled.div`
+  width: 25rem;
+  margin: 0 auto;
+`
