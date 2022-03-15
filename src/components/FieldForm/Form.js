@@ -44,7 +44,6 @@ const Form = ({ setFormList, formList, form, idx }) => {
   return (
     <Container>
       <FieldHeader setFormList={setFormList} formList={formList} idx={idx} />
-
       {form.type === 'text' || form.type === 'phone' ? (
         <Input
           ref={labelRef}
@@ -79,6 +78,8 @@ export default Form;
 const Container = styled.form`
   border-top: 1px solid #d1d1d1;
   margin-top: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
 `;
 
 const Input = styled.input`
