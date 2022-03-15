@@ -7,6 +7,7 @@ const Form = ({ setFormList, formList, form, idx }) => {
   const labelRef = useRef();
   const [tagText, setTagText] = useState('');
   const [tagBox, setTagBox] = useState([]);
+  console.log(tagBox)
 
   const handleChangePlaceholder = (e) => {
     setFormList(
@@ -21,6 +22,7 @@ const Form = ({ setFormList, formList, form, idx }) => {
 
   const onChange = (e) => {
     setTagText(e.target.value);
+    setTagBox(formList.option);
   };
   const keyUp = (e) => {
     if (window.event.keyCode === 188) {

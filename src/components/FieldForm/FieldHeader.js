@@ -5,13 +5,6 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
   const labelRef = useRef();
   const checkboxRef = useRef();
 
-  // console.log(formList)
-  // const handleCheckNum = (label) => {
-  //   let regExp = /^(01[016789]{1})-?[0-9]{3,4}-?[0-9]{4}$/;
-  //   let result = regExp.test(label);
-  //   console.log(result);
-  // }
-
   // 필드 삭제
   // const handleDeleteField = () => {
   //   const filteredFieldList = formList.filter((i) => idx !== i);
@@ -32,7 +25,7 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
   const handleChangeSelect = (e) => {
     const reset = field => {
       delete field.description;
-      delete field.info;
+      delete field.contents;
       delete field.option;
       delete field.placeholder;
     };
@@ -50,9 +43,6 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
               description: '',
             };
           } else if (e.target.value === 'phone') {
-            // if (!handleCheckNum(field.label)) {
-            //   return alert('전화번호가 올바르지 않습니다.')
-            // }
             return {
               ...field,
               id: 'phone',
@@ -87,7 +77,7 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
               ...field,
               id: 'agreement_0',
               type: e.target.value,
-              info: '',
+              contents: '',
             };
           }
         }
