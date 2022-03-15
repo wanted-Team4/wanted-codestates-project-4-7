@@ -7,6 +7,7 @@ import { createForm } from "../actions/index";
 import shortId from 'shortid';
 
 const initialState = {
+  id: 'name',
   type: 'text',
   required: false,
   label: '',
@@ -55,8 +56,6 @@ const NewForm = () => {
     dispatch(createForm({ formId, title, formList }));
     return navigate('/');
   }
-
-  console.log(formList);
 
   return (
     <Container>
