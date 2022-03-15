@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import FieldHeader from './FieldHeader'
-import TextEditor from "./TextEditor";
+import styled from 'styled-components';
+import FieldHeader from './FieldHeader';
+import TextEditor from './TextEditor';
 import { useRef, useState } from 'react';
 
 const Form = ({ setFormList, formList, form, idx }) => {
@@ -15,9 +15,9 @@ const Form = ({ setFormList, formList, form, idx }) => {
           return { ...list, placeholder: e.target.value };
         }
         return list;
-      }),
+      })
     );
-  }
+  };
 
   const onChange = (e) => {
     setTagText(e.target.value);
@@ -44,41 +44,38 @@ const Form = ({ setFormList, formList, form, idx }) => {
   console.log(tagBox);
   return (
     <Container>
-      <FieldHeader
-        setFormList={setFormList}
-        formList={formList}
-        idx={idx}
-      />
-      {form.type === 'text' || form.type === 'phone' ?
-        (<Input
+      <FieldHeader setFormList={setFormList} formList={formList} idx={idx} />
+
+      {form.type === 'text' || form.type === 'phone' ? (
+        <Input
           ref={labelRef}
           onChange={handleChangePlaceholder}
-          placeholder="예시를 입력해주세요."
-        />) : form.type === 'select' ? (
-          <>
-            <TagContainer>
-              {tagBox.map((tag, i) => {
-                return (
-                  <TextBox key={i}>
-                    {tag}
-                    <TagBtn onClick={removes}>X</TagBtn>
-                  </TextBox>
-                );
-              })}
-            </TagContainer>
-            <Input
-              placeholder="태그를 ',' 구분해서 입력해주세요"
-              onChange={onChange}
-              onKeyUp={keyUp}
-              value={tagText}
-            />
-          </>
-        ) : null}
-      <TextEditor
-        setFormList={setFormList}
-        formList={formList}
-        idx={idx}
-      />
+          placeholder='예시를 입력해주세요.'
+        />
+      ) : form.type === 'select1' ? (
+        <Input
+          // value={placeholder}
+          placeholder='예시를 입력해주세요.'
+        />
+      ) : form.type === 'select' ? (
+        <>
+          {tagBox.map((tag, i) => {
+            return (
+              <TextBox key={i}>
+                {tag}
+                <TagBtn onClick={removes}>X</TagBtn>
+              </TextBox>
+            );
+          })}
+          <Input
+            placeholder="태그를 ',' 구분해서 입력해주세요"
+            onChange={onChange}
+            onKeyUp={keyUp}
+            value={tagText}
+          />
+        </>
+      ) : null}
+      <TextEditor setFormList={setFormList} formList={formList} idx={idx} />
     </Container>
   );
 };
@@ -95,10 +92,8 @@ const Input = styled.input`
   height: 1.8rem;
   box-sizing: border-box;
   border: none;
-  border-top: 1px solid #d1d1d1;
-  border-left: 1px solid #d1d1d1;
-  border-right: 1px solid #d1d1d1;
   outline: 0;
+  border: 1px solid #d1d1d1;
 `;
 const TextBox = styled.div`
   display: inline-block;
@@ -112,13 +107,7 @@ const TextBox = styled.div`
   margin: 2px 5px;
   flex-wrap: wrap-reverse;
   order: 1;
-`;
-const TagContainer = styled.div`
   border: 1px solid #d1d1d1;
-  display: inline-block;
-  padding: 5px;
-  height: auto;
-  width: 100%;
 `;
 const TagBtn = styled.div`
   display: inline-block;
