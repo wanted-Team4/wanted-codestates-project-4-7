@@ -1,7 +1,7 @@
-import { CREATE_FORM, DELETE_FORM, SUBMIT_FORM } from "../actions/index";
-import { initialState } from "./initialState";
+import { CREATE_FORM, DELETE_FORM, SUBMIT_FORM } from '../actions/index';
+import { initialState } from './initialState';
 
-const kewordReducer = (state = initialState, action) => {
+const surveyReducer = (state = initialState, action) => {
   switch (action.type) {
     case CREATE_FORM: {
       return {
@@ -38,4 +38,4 @@ const kewordReducer = (state = initialState, action) => {
   }
 };
 
-export default kewordReducer;
+export default surveyReducer;
