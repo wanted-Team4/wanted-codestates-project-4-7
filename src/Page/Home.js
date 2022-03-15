@@ -1,47 +1,40 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import Submission from './Submission';
 
 const Home = () => {
-  const { forms } = useSelector((state) => state.surveyReducer);
-  const dispatch = useDispatch();
-  const [surveyId, setSurveyId] = useState(1);
-  console.log(forms.filter((el) => el.formId === surveyId));
-
   const navigate = useNavigate();
-
+  const { forms } = useSelector((state) => state.surveyReducer);
+  console.log(forms);
+  const removeCreatedForm = () => {
+    //액션으로 디스패치한다
+    //remove하는 리듀서를 가져온다
+  };
   return (
     <Container>
       <Head>
-        <h1>(홈) 설문지 목록</h1>
+        <h1>(홈) 제작된 설문지 양식 목록</h1>
         <span onClick={() => navigate('/create')}>
           <i class="fa-solid fa-plus"></i>
         </span>
       </Head>
-      {/* map 돌리기 */}
-      <FormItem>
-        <p onClick={() => navigate('/createdform')}>기본설문지</p>
-        <div>
-          <span onClick={() => navigate('/submission')}>
-            <i class="fa-solid fa-list"></i>
-          </span>
-          <span onClick={() => navigate('#')}>
-            <i class="fa-solid fa-trash-can"></i>
-          </span>
-        </div>
-      </FormItem>
-      <FormItem>
-        <p onClick={() => navigate('/createdform')}>기본설문지</p>
-        <div>
-          <span onClick={() => navigate('/submission')}>
-            <i class="fa-solid fa-list"></i>
-          </span>
-          <span onClick={() => navigate('#')}>
-            <i class="fa-solid fa-trash-can"></i>
-          </span>
-        </div>
-      </FormItem>
+      {forms.map((el, i) => (
+        <FormItem key={i}>
+          <p onClick={() => navigate(`/createdform/${forms[i].formId}`)}>
+            {forms[i].title}
+          </p>
+          <div>
+            <span onClick={() => navigate(`/submission/${forms[i].formId}`)}>
+              <i class="fa-solid fa-list"></i>
+            </span>
+            <span onClick={removeCreatedForm}>
+              <i class="fa-solid fa-trash-can"></i>
+            </span>
+          </div>
+        </FormItem>
+      ))}
     </Container>
   );
 };
@@ -69,7 +62,7 @@ const Head = styled.div`
     box-sizing: border-box;
     font-size: 1rem;
     color: #fff;
-    background: #000;
+    background: #ea6157;
     cursor: pointer;
   }
 `;
@@ -94,6 +87,7 @@ const FormItem = styled.div`
   }
   div {
     display: flex;
+  }
   }
   .fa-list {
     padding: 1.5rem 1rem;
