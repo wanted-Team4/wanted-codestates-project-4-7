@@ -1,20 +1,26 @@
 import { useState, useRef } from 'react';
 import styled from 'styled-components';
 import Form from '../components/FieldForm/Form';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { createForm } from "../actions/index";
+import shortId from 'shortid';
 
 const initialState = {
-  formId: 'text',
   type: 'text',
   required: false,
   label: '',
-  placeholder: '',
   description: ''
 }
+
+const formId = shortId.generate()
 
 const NewForm = () => {
   const titleRef = useRef();
   const [formList, setFormList] = useState([initialState]);
   const [title, setTitle] = useState('')
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const handleAddForm = () => {
     const FormCopy = [...formList, { ...initialState }];
@@ -25,11 +31,29 @@ const NewForm = () => {
     setTitle(titleRef.current.value)
   }
 
-  const onSubmit = () => {
-    if (title === '') {
-      alert('필수항목을 모두 입력해주세요.')
-    }
+  const checkEmpty = (formList) => {
+    const targets = formList.map((field) => {
+      const tempField = { ...field };
+      delete tempField.description;
+      delete tempField.placeholder;
+      return Object.values(tempField);
+    });
 
+    for (let target of targets) {
+      for (let e of target) {
+        if (e === "") return true;
+        if (Array.isArray(e) && !e.length) return true;
+      }
+    }
+    return false;
+  };
+
+  const onSubmit = () => {
+    if (title === '' || !formList.length || checkEmpty(formList)) {
+      return alert('필수항목을 모두 입력해주세요.')
+    }
+    dispatch(createForm({ formId, title, formList }));
+    return navigate('/');
   }
 
   console.log(formList);
