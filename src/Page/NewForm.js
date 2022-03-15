@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Form from '../components/FieldForm/Form';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { createForm } from "../actions/index";
+import { createForm } from '../actions/index';
 import shortId from 'shortid';
 
 const initialState = {
@@ -11,26 +11,26 @@ const initialState = {
   type: 'text',
   required: false,
   label: '',
-  description: ''
-}
+  description: '',
+};
 
-const formId = shortId.generate()
+const formId = shortId.generate();
 
 const NewForm = () => {
   const titleRef = useRef();
   const [formList, setFormList] = useState([initialState]);
-  const [title, setTitle] = useState('')
+  const [title, setTitle] = useState('');
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const handleAddForm = () => {
     const FormCopy = [...formList, { ...initialState }];
-    setFormList(FormCopy)
-  }
+    setFormList(FormCopy);
+  };
 
   const handleAddTitle = () => {
-    setTitle(titleRef.current.value)
-  }
+    setTitle(titleRef.current.value);
+  };
 
   const checkEmpty = (formList) => {
     const targets = formList.map((field) => {
@@ -42,7 +42,7 @@ const NewForm = () => {
 
     for (let target of targets) {
       for (let e of target) {
-        if (e === "") return true;
+        if (e === '') return true;
         if (Array.isArray(e) && !e.length) return true;
       }
     }
@@ -51,11 +51,11 @@ const NewForm = () => {
 
   const onSubmit = () => {
     if (title === '' || !formList.length || checkEmpty(formList)) {
-      return alert('필수항목을 모두 입력해주세요.')
+      return alert('필수항목을 모두 입력해주세요.');
     }
     dispatch(createForm({ formId, title, formList }));
     return navigate('/');
-  }
+  };
 
   return (
     <Container>
@@ -89,7 +89,7 @@ const Container = styled.div`
   width: 50%;
   margin: 0 auto;
   box-sizing: border-box;
-  background-color: #F6F6F6;
+  background-color: #f6f6f6;
   height: 100vh;
 `;
 const InnerBox = styled.div`
@@ -103,7 +103,7 @@ const HeaderText = styled.p`
   text-align: center;
   padding-top: 3rem;
   padding-bottom: 2rem;
-`
+`;
 const Text = styled.p`
   margin: 0.5rem 0;
   font-weight: 500;
@@ -121,14 +121,14 @@ const SubmitBtn = styled.button`
   width: 100%;
   padding: 0.5rem 0;
   border-radius: 0.5rem;
-  background-color: #0075F6;
+  background-color: #0075f6;
   color: #fff;
-  border: 1px solid #0075F6;
+  border: 1px solid #0075f6;
   :hover {
-  cursor: pointer;
-  border: 1px solid #0075F6;
-  background-color: #fff;
-  color: #0075F6;
+    cursor: pointer;
+    border: 1px solid #0075f6;
+    background-color: #fff;
+    color: #0075f6;
   }
 `;
 const BtnBox = styled.div`
@@ -142,14 +142,14 @@ const OpenBtn = styled.button`
   cursor: pointer;
   background-color: white;
   font-weight: 500;
-  border: 1px solid #0075F6;
+  border: 1px solid #0075f6;
 `;
 const CreateBtn = styled.button`
   border: none;
   padding: 0.4rem;
   border-radius: 0.2rem;
-  background-color: #0075F6;
+  background-color: #0075f6;
   color: #fff;
   cursor: pointer;
-  border: 1px solid #0075F6;
+  border: 1px solid #0075f6;
 `;
