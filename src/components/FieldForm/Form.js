@@ -1,26 +1,58 @@
 import styled from "styled-components";
 import FieldHeader from './FieldHeader'
-import Editor from "./Editor";
+import TextEditor from "./TextEditor";
+import { useRef, useState } from 'react';
 
-const Form = ({ setFormList, form, labelRef }) => {
+const Form = ({ setFormList, formList, form, idx }) => {
+  const labelRef = useRef();
+  // const textRef = useRef();
+  const [text, setText] = useState('');
+
+  const handleChangePlaceholder = (e) => {
+    setFormList(
+      formList.map((list, i) => {
+        if (idx === i) {
+          return { ...list, placeholder: e.target.value };
+        }
+        return list;
+      }),
+    );
+  }
+  // const onChange = (event, editor) => {
+  //   setText(editor.getData());
+  //   console.log(text)
+  // setFormList(
+  //   formList.map((list, i) => {
+  //     if (idx === i) {
+  //       return { ...list, description: text };
+  //     }
+  //     return list;
+  //   }),
+  // );
+  // }
 
   return (
     <Container>
       <FieldHeader
         setFormList={setFormList}
-        form={form}
-        labelRef={labelRef}
+        formList={formList}
+        idx={idx}
       />
       {form.type === 'text' || form.type === 'phone' ?
         (<Input
-          // value={placeholder}
+          ref={labelRef}
+          onChange={handleChangePlaceholder}
           placeholder="예시를 입력해주세요."
         />) : form.type === 'select' ? (
           <Input
             placeholder="태그를 ',' 구분해서 입력해주세요"
           />
         ) : null}
-      <Editor />
+      <TextEditor
+        setFormList={setFormList}
+        formList={formList}
+        idx={idx}
+      />
     </Container>
   );
 }

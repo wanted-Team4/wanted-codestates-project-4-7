@@ -2,41 +2,26 @@ import { useState, useRef } from 'react';
 import styled from "styled-components";
 import Form from "../components/FieldForm/Form";
 
+const initialState = {
+  formId: 'name',
+  type: 'text',
+  required: false,
+  label: '',
+  placeholder: '',
+  description: ''
+}
+
 const NewForm = () => {
   const titleRef = useRef();
-  const labelRef = useRef();
-  const [checked, setChecked] = useState(false);
-
-  const [formList, setFormList] = useState(
-    [
-      {
-        formId: 1,
-        type: 'text',
-        required: false,
-        label: '',
-        placeholder: '',
-        description: ''
-      }
-    ]);
+  const [formList, setFormList] = useState([initialState]);
 
   const handleAddForm = () => {
-    setFormList(formId => [...formId, {
-      formId: Date.now(),
-      type: 'text',
-      required: false,
-      label: '',
-      placeholder: '',
-      description: ''
-    }]);
+    const FormCopy = [...formList, { ...initialState }];
+    setFormList(FormCopy)
   }
 
   const onSubmit = () => {
-    console.log(titleRef.current.value)
-    console.log(labelRef.current.value) // 확인 필요
-    console.log(formList[0].type)
-    // console.log(form.type) // 필수 체크 여부
-    // console.log(form.type) // 플레이스 홀더 값
-    // console.log(form.type) // 텍스트 내용 있을 경우
+
   }
 
   console.log(formList)
@@ -47,12 +32,13 @@ const NewForm = () => {
         <Text>제목*</Text>
         <TitleInput ref={titleRef} />
         <Text>필드목록*</Text>
-        {formList.map((form) => (
+        {formList.map((form, idx) => (
           <Form
-            key={form.formId}
+            key={idx}
             form={form}
+            formList={formList}
             setFormList={setFormList}
-            labelRef={labelRef}
+            idx={idx}
           />
         ))}
         <SubmitBtn onClick={handleAddForm}>필드 추가하기</SubmitBtn>
