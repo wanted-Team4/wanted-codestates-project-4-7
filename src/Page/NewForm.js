@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Form from '../components/FieldForm/Form';
 
 const initialState = {
-  formId: 'name',
+  formId: 'text',
   type: 'text',
   required: false,
   label: '',
@@ -14,13 +14,21 @@ const initialState = {
 const NewForm = () => {
   const titleRef = useRef();
   const [formList, setFormList] = useState([initialState]);
+  const [title, setTitle] = useState('')
 
   const handleAddForm = () => {
     const FormCopy = [...formList, { ...initialState }];
     setFormList(FormCopy)
   }
 
+  const handleAddTitle = () => {
+    setTitle(titleRef.current.value)
+  }
+
   const onSubmit = () => {
+    if (title === '') {
+      alert('필수항목을 모두 입력해주세요.')
+    }
 
   }
 
@@ -30,7 +38,7 @@ const NewForm = () => {
     <Container>
       <InnerBox>
         <Text>제목*</Text>
-        <TitleInput ref={titleRef} />
+        <TitleInput ref={titleRef} onChange={handleAddTitle} />
         <Text>필드목록*</Text>
         {formList.map((form, idx) => (
           <Form

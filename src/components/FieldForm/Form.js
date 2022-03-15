@@ -45,16 +45,10 @@ const Form = ({ setFormList, formList, form, idx }) => {
   return (
     <Container>
       <FieldHeader setFormList={setFormList} formList={formList} idx={idx} />
-
       {form.type === 'text' || form.type === 'phone' ? (
         <Input
           ref={labelRef}
           onChange={handleChangePlaceholder}
-          placeholder='예시를 입력해주세요.'
-        />
-      ) : form.type === 'select1' ? (
-        <Input
-          // value={placeholder}
           placeholder='예시를 입력해주세요.'
         />
       ) : form.type === 'select' ? (
@@ -85,6 +79,8 @@ export default Form;
 const Container = styled.form`
   border-top: 1px solid #d1d1d1;
   margin-top: 1rem;
+  border-radius: 10px;
+  overflow: hidden;
 `;
 
 const Input = styled.input`

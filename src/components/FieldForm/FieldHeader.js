@@ -120,10 +120,9 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
     );
   };
 
-
   return (
     <Container>
-      <Select name="type" onChange={handleChangeSelect} value={formList.type}>
+      <Select name="type" onChange={handleChangeSelect}>
         <Option value="text">텍스트</Option>
         <Option value="phone">전화번호</Option>
         <Option value="address">주소</Option>
@@ -132,16 +131,18 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
         <Option value="agreement">이용약관</Option>
       </Select>
       <Input type="text" ref={labelRef} onChange={handleChangeLabel} />
-      <Label>
-        <CheckBox
-          type="checkbox"
-          ref={checkboxRef}
-          onChange={handleChangeCheckbox}
-          checked={formList.required}
-          id={'required_' + idx}
-        />
-        필수
-      </Label>
+      <LabelBox>
+        <Label>
+          <CheckBox
+            type="checkbox"
+            ref={checkboxRef}
+            onChange={handleChangeCheckbox}
+            checked={formList.required}
+            id={'required_' + idx}
+          />
+          필수
+        </Label>
+      </LabelBox>
       <DragBtn><i className="fa-solid fa-arrows-up-down"></i></DragBtn>
       <DeleteBtn onClick={handleDeleteField}><i className="fa-solid fa-xmark"></i></DeleteBtn>
     </Container>
@@ -152,42 +153,48 @@ export default FieldHeader;
 
 const Container = styled.div`
   width: 25rem;
-  height: 1.8rem;
+  height: 2rem;
   display: flex;
-  flex-wrap: wrap;
   margin: 0 auto;
-  box-sizing: border-box;
 `;
 const Select = styled.select`
+  width: 35%;
   border: none;
   height: 100%;
   outline: 0;
-  width: 20%;
   border-right: 1px solid #d1d1d1;
   border-left: 1px solid #d1d1d1;
+  border-top-left-radius: 10px;
 `;
 const Option = styled.option`
   outline: 0;
 `;
 const Input = styled.input`
-  width: 50.1%;
+  width: 100%;
   outline: 0;
   height: 100%;
   border: none;
   border-right: 1px solid #d1d1d1;
 `;
+const LabelBox = styled.div`
+  display: flex;
+  align-items: center;
+  width: 30%;
+  font-size: 14px;
+  font-weight: bold;
+`
 const CheckBox = styled.input`
   outline: 0;
   padding: 0.3rem 0.6rem;
 `;
 const Label = styled.label`
-  padding: 0.25rem 0.3rem;
+  padding: 0.25rem 0.4rem;
   font-size: 0.9rem;
   font-weight: 500;
   border-right: 1px solid #d1d1d1;
 `;
 const DragBtn = styled.div`
-  padding: 0.4rem 0.65rem;
+  padding: 0.4rem 0.8rem;
   cursor: pointer;
 `;
 const DeleteBtn = styled.div`

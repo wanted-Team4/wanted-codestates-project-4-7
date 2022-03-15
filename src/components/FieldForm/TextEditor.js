@@ -111,7 +111,6 @@ const Container = styled.div`
   border-right: 1px solid #D1D1D1;
   .wrapper-class {
     width: 100%;
-    height: ${props => props.height}px;
     margin-bottom: 4rem;
   }
   .rdw-inline-wrapper :nth-child(5) {
