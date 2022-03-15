@@ -7,7 +7,6 @@ const Form = ({ setFormList, formList, form, idx }) => {
   const labelRef = useRef();
   const [tagText, setTagText] = useState('');
   const [tagBox, setTagBox] = useState([]);
-  console.log(tagBox)
 
   const handleChangePlaceholder = (e) => {
     setFormList(
@@ -57,7 +56,11 @@ const Form = ({ setFormList, formList, form, idx }) => {
   };
   return (
     <Container>
-      <FieldHeader setFormList={setFormList} formList={formList} idx={idx} />
+      <FieldHeader
+        setFormList={setFormList}
+        formList={formList}
+        idx={idx}
+      />
       {form.type === 'text' || form.type === 'phone' ? (
         <Input
           ref={labelRef}

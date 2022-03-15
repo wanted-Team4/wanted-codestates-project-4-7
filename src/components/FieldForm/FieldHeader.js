@@ -1,25 +1,23 @@
 import styled from "styled-components";
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
 
 const FieldHeader = ({ setFormList, idx, formList }) => {
   const labelRef = useRef();
   const checkboxRef = useRef();
 
   // 필드 삭제
-  // const handleDeleteField = () => {
-  //   const filteredFieldList = formList.filter((i) => idx !== i);
-  //   setFormList(filteredFieldList);
-  // };
-  const handleDeleteField = () => {
+  const handleDeleteField = (e) => {
     setFormList(
-      formList.filter(((field, i) => {
+      formList.filter(((list, i) => {
         if (idx !== i) {
-          return { ...field }
+          delete list.type;
+          return { ...list, type: e.target.value }
         }
       }
       ))
     )
   };
+
 
   // 타입 변경
   const handleChangeSelect = (e) => {
@@ -165,6 +163,7 @@ const Input = styled.input`
   height: 100%;
   border: none;
   border-right: 1px solid #d1d1d1;
+  padding: 0;
 `;
 const LabelBox = styled.div`
   display: flex;
