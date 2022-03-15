@@ -33,9 +33,9 @@ const Modal = ({ modalSwitch }) => {
   return (
     <Modaldim onClick={onCloseModal}>
       <ModalBox>
+        <Button onClick={onCloseModal}>X</Button>
         <ModalItem>
-          <button onClick={onCloseModal}>X</button>
-          {data.map((item, i) => {
+          {data.map((item) => {
             return (
               <>
                 {item.id ? (
@@ -109,4 +109,15 @@ const Box = styled.div`
     color: black;
     font-weight: bold;
   }
+`;
+
+const Button = styled.button`
+  display: flex;
+  margin-left: auto;
+  border: none;
+  color: #333;
+  background-color: #fff;
+  position: relative;
+  top: 20px;
+  right: 20px;
 `;

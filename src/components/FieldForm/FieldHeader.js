@@ -146,7 +146,7 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
       <DeleteBtn onClick={handleDeleteField}><i className="fa-solid fa-xmark"></i></DeleteBtn>
     </Container>
   );
-}
+};
 
 export default FieldHeader;
 
@@ -157,44 +157,44 @@ const Container = styled.div`
   flex-wrap: wrap;
   margin: 0 auto;
   box-sizing: border-box;
-`
+`;
 const Select = styled.select`
   border: none;
   height: 100%;
   outline: 0;
   width: 20%;
-  border-right: 1px solid #D1D1D1;
-  border-left: 1px solid #D1D1D1;
-`
+  border-right: 1px solid #d1d1d1;
+  border-left: 1px solid #d1d1d1;
+`;
 const Option = styled.option`
   outline: 0;
-`
+`;
 const Input = styled.input`
-  width: 49.6%;
+  width: 48.4%;
   outline: 0;
   height: 100%;
   border: none;
-  border-right: 1px solid #D1D1D1;
-`
+  border-right: 1px solid #d1d1d1;
+`;
 const CheckBox = styled.input`
   outline: 0;
   padding: 0.3rem 0.6rem;
-`
+`;
 const Label = styled.label`
   padding: 0.25rem 0.3rem;
   font-size: 0.9rem;
   font-weight: 500;
-  border-right: 1px solid #D1D1D1;
-`
+  border-right: 1px solid #d1d1d1;
+`;
 const DragBtn = styled.div`
   padding: 0.4rem 0.65rem;
   cursor: pointer;
-`
+`;
 const DeleteBtn = styled.div`
-  padding: 0.3rem 0.6rem;
-  background-color: #FF6464;
+  padding: 0.3rem 0.5rem;
+  background-color: #ff6464;
   color: #fff;
   font-size: 1.2rem;
-  border-right: 1px solid #FF6464;
+  border-right: 1px solid #ff6464;
   cursor: pointer;
-`
+`;
