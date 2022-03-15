@@ -1,10 +1,10 @@
-import { initialState } from "./initialState";
+import { initialState } from './initialState';
 
-const kewordReducer = (state = initialState, action) => {
+const surveyReducer = (state = initialState, action) => {
   switch (action.type) {
     default:
       return state;
   }
 };
 
-export default kewordReducer;
+export default surveyReducer;
