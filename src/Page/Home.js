@@ -3,9 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Submission from './Submission';
+import { deleteForm } from '../actions';
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { forms } = useSelector((state) => state.surveyReducer);
   console.log(forms);
   const removeCreatedForm = () => {
@@ -29,7 +31,7 @@ const Home = () => {
             <span onClick={() => navigate(`/submission/${forms[i].formId}`)}>
               <i class="fa-solid fa-list"></i>
             </span>
-            <span onClick={removeCreatedForm}>
+            <span onClick={() => dispatch(deleteForm(forms[i].formId))}>
               <i class="fa-solid fa-trash-can"></i>
             </span>
           </div>
