@@ -63,7 +63,7 @@ export const initialState = {
     {
       formId: 2,
       title: '예제 폼2',
-      fields: [
+      formList: [
         {
           id: 'name',
           type: 'text',

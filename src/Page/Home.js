@@ -10,7 +10,7 @@ const Home = () => {
   const dispatch = useDispatch();
   const { forms } = useSelector((state) => state.surveyReducer);
   const state = useSelector((state) => state.surveyReducer); //데이터 확인용으로 넣었어요, 필요없으시면 삭제해주세요
-  console.log(state); //데이터 확인용으로 넣었어요, 필요없으시면 삭제해주세요
+  console.log('>>', state); //데이터 확인용으로 넣었어요, 필요없으시면 삭제해주세요
 
   return (
     <Container>
