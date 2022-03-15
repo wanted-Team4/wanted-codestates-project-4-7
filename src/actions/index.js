@@ -1,12 +1,17 @@
-export const SUBMIT_FORM = 'SUBMIT_FORM';
+export const CREATE_FORM = 'CREATE_FORM';
 export const DELETE_FORM = 'DELETE_FORM';
+export const SUBMIT_FORM = 'SUMBIT_FORM';
 
-export const submitForm = (formId, data) => {
+export const createForm = ({ formId, title, fields }) => {
   return {
-    type: SUBMIT_FORM,
+    type: CREATE_FORM,
     payload: {
-      formId,
-      data,
+      form: {
+        formId,
+        title,
+        fields,
+        submitData: [],
+      },
     },
   };
 };
@@ -16,6 +21,16 @@ export const deleteForm = (formId) => {
     type: DELETE_FORM,
     payload: {
       formId,
+    },
+  };
+};
+
+export const submitForm = (formId, data) => {
+  return {
+    type: SUBMIT_FORM,
+    payload: {
+      formId,
+      data,
     },
   };
 };
