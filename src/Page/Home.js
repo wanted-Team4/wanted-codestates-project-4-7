@@ -88,7 +88,6 @@ const FormItem = styled.div`
   div {
     display: flex;
   }
-  }
   .fa-list {
     padding: 1.5rem 1rem;
     box-sizing: border-box;

@@ -55,20 +55,17 @@ const Form = ({ setFormList, formList, form, idx }) => {
           onChange={handleChangePlaceholder}
           placeholder="예시를 입력해주세요."
         />) : form.type === 'select' ? (
-          <Input
-            // value={placeholder}
-            placeholder='예시를 입력해주세요.'
-          />
-        ) : form.type === 'select' ? (
           <>
-            {tagBox.map((tag, i) => {
-              return (
-                <TextBox key={i}>
-                  {tag}
-                  <TagBtn onClick={removes}>X</TagBtn>
-                </TextBox>
-              );
-            })}
+            <TagContainer>
+              {tagBox.map((tag, i) => {
+                return (
+                  <TextBox key={i}>
+                    {tag}
+                    <TagBtn onClick={removes}>X</TagBtn>
+                  </TextBox>
+                );
+              })}
+            </TagContainer>
             <Input
               placeholder="태그를 ',' 구분해서 입력해주세요"
               onChange={onChange}
@@ -82,7 +79,6 @@ const Form = ({ setFormList, formList, form, idx }) => {
         formList={formList}
         idx={idx}
       />
-//       </TagContainer>
     </Container>
   );
 };
