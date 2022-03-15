@@ -1,11 +1,23 @@
-import styled from 'styled-components';
-import FieldHeader from './FieldHeader';
-import Editor from './Editor';
-import React, { useState } from 'react';
+import styled from "styled-components";
+import FieldHeader from './FieldHeader'
+import TextEditor from "./TextEditor";
+import { useRef, useState } from 'react';
 
-const Form = ({ setFormList, form, labelRef }) => {
+const Form = ({ setFormList, formList, form, idx }) => {
+  const labelRef = useRef();
   const [tagText, setTagText] = useState('');
   const [tagBox, setTagBox] = useState([]);
+
+  const handleChangePlaceholder = (e) => {
+    setFormList(
+      formList.map((list, i) => {
+        if (idx === i) {
+          return { ...list, placeholder: e.target.value };
+        }
+        return list;
+      }),
+    );
+  }
 
   const onChange = (e) => {
     setTagText(e.target.value);
@@ -32,9 +44,17 @@ const Form = ({ setFormList, form, labelRef }) => {
   console.log(tagBox);
   return (
     <Container>
-      <FieldHeader setFormList={setFormList} form={form} labelRef={labelRef} />
-      <TagContainer>
-        {form.type === 'text' || form.type === 'phone' ? (
+      <FieldHeader
+        setFormList={setFormList}
+        formList={formList}
+        idx={idx}
+      />
+      {form.type === 'text' || form.type === 'phone' ?
+        (<Input
+          ref={labelRef}
+          onChange={handleChangePlaceholder}
+          placeholder="예시를 입력해주세요."
+        />) : form.type === 'select' ? (
           <Input
             // value={placeholder}
             placeholder='예시를 입력해주세요.'
@@ -57,8 +77,12 @@ const Form = ({ setFormList, form, labelRef }) => {
             />
           </>
         ) : null}
-      </TagContainer>
-      <Editor />
+      <TextEditor
+        setFormList={setFormList}
+        formList={formList}
+        idx={idx}
+      />
+//       </TagContainer>
     </Container>
   );
 };
