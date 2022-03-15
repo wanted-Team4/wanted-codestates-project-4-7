@@ -61,6 +61,7 @@ const NewForm = () => {
   return (
     <Container>
       <InnerBox>
+        <HeaderText>폼 생성하기</HeaderText>
         <Text>제목*</Text>
         <TitleInput ref={titleRef} onChange={handleAddTitle} />
         <Text>필드목록*</Text>
@@ -86,17 +87,28 @@ const NewForm = () => {
 export default NewForm;
 
 const Container = styled.div`
-  width: 60%;
+  width: 50%;
   margin: 0 auto;
   box-sizing: border-box;
+  background-color: #F6F6F6;
+  height: 100vh;
 `;
 const InnerBox = styled.div`
-  width: 25rem;
+  width: 33rem;
   margin: 0 auto;
 `;
+const HeaderText = styled.p`
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 600;
+  text-align: center;
+  padding-top: 3rem;
+  padding-bottom: 2rem;
+`
 const Text = styled.p`
   margin: 0.5rem 0;
-  font-weight: bold;
+  font-weight: 500;
+  font-size: 1.3rem;
 `;
 const TitleInput = styled.input`
   width: 100%;
@@ -110,13 +122,14 @@ const SubmitBtn = styled.button`
   width: 100%;
   padding: 0.5rem 0;
   border-radius: 0.5rem;
-  border: 1px solid #0028ff;
-  background-color: #fff;
-  color: #0028ff;
+  background-color: #0075F6;
+  color: #fff;
+  border: 1px solid #0075F6;
   :hover {
-    background-color: #0028ff;
-    color: #fff;
-    cursor: pointer;
+  cursor: pointer;
+  border: 1px solid #0075F6;
+  background-color: #fff;
+  color: #0075F6;
   }
 `;
 const BtnBox = styled.div`
@@ -125,17 +138,19 @@ const BtnBox = styled.div`
 `;
 const OpenBtn = styled.button`
   margin-right: 0.5rem;
-  border: none;
   padding: 0.5rem;
   border-radius: 0.2rem;
   cursor: pointer;
+  background-color: white;
+  font-weight: 500;
+  border: 1px solid #0075F6;
 `;
 const CreateBtn = styled.button`
   border: none;
   padding: 0.4rem;
   border-radius: 0.2rem;
-  background-color: #0028ff;
+  background-color: #0075F6;
   color: #fff;
   cursor: pointer;
-  border: 1px solid #0028ff;
+  border: 1px solid #0075F6;
 `;

@@ -109,6 +109,8 @@ const Container = styled.div`
   border-bottom: 1px solid #D1D1D1;
   border-left: 1px solid #D1D1D1;
   border-right: 1px solid #D1D1D1;
+  background-color: #fff;
+  border-radius: 10px;
   .wrapper-class {
     width: 100%;
     margin-bottom: 4rem;
@@ -154,5 +156,8 @@ const Container = styled.div`
   }
   .rdw-image-wrapper {
     display: none;
+  }
+  .rdw-editor-toolbar{
+    margin-top: 0rem;
   }
 `

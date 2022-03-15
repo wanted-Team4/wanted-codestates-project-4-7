@@ -85,7 +85,7 @@ const Container = styled.form`
 `;
 
 const Input = styled.input`
-  width: 25rem;
+  width: 100%;
   height: 1.8rem;
   box-sizing: border-box;
   border: none;
