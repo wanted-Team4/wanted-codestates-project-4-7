@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <Container>
       <Head>
-        <h1>(홈) 제작된 설문지 양식 목록</h1>
+        <h1>생성된 폼 목록</h1>
         <span onClick={() => navigate('/create')}>
           <i class="fa-solid fa-plus"></i>
         </span>
