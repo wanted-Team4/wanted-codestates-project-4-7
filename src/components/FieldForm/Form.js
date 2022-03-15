@@ -52,11 +52,6 @@ const Form = ({ setFormList, formList, form, idx }) => {
           onChange={handleChangePlaceholder}
           placeholder='예시를 입력해주세요.'
         />
-      ) : form.type === 'select1' ? (
-        <Input
-          // value={placeholder}
-          placeholder='예시를 입력해주세요.'
-        />
       ) : form.type === 'select' ? (
         <>
           {tagBox.map((tag, i) => {

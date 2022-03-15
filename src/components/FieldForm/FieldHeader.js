@@ -170,7 +170,7 @@ const Option = styled.option`
   outline: 0;
 `;
 const Input = styled.input`
-  width: 48.4%;
+  width: 50.1%;
   outline: 0;
   height: 100%;
   border: none;
@@ -195,6 +195,6 @@ const DeleteBtn = styled.div`
   background-color: #ff6464;
   color: #fff;
   font-size: 1.2rem;
-  border-right: 1px solid #ff6464;
+  border-right: 2px solid #ff6464;
   cursor: pointer;
 `;
