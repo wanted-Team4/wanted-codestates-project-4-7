@@ -18,13 +18,24 @@ const Form = ({ setFormList, formList, form, idx }) => {
         return list;
       })
     );
-  };
+  }
 
   const onChange = (e) => {
     setTagText(e.target.value);
-    setTagBox(formList.option);
   };
-  const keyUp = (e) => {
+
+  const addTag = (e) => {
+    setFormList(
+      formList.map((list, i) => {
+        if (idx === i) {
+          return { ...list, option: tagBox };
+        }
+        return list;
+      }),
+    );
+  }
+
+  const onKeyUp = (e) => {
     if (window.event.keyCode === 188) {
       // ,가 눌렸을 때 실행
       if (!tagText.trim()) {
@@ -37,6 +48,7 @@ const Form = ({ setFormList, formList, form, idx }) => {
       }
     }
   };
+
   const removes = (e) => {
     if (e.target.innerText === 'X') {
       console.log('실행');
@@ -65,7 +77,8 @@ const Form = ({ setFormList, formList, form, idx }) => {
           <Input
             placeholder="태그를 ',' 구분해서 입력해주세요"
             onChange={onChange}
-            onKeyUp={keyUp}
+            onKeyPress={addTag}
+            onKeyUp={onKeyUp}
             value={tagText}
           />
         </>
@@ -85,7 +98,7 @@ const Container = styled.form`
 `;
 
 const Input = styled.input`
-  width: 25rem;
+  width: 100%;
   height: 1.8rem;
   box-sizing: border-box;
   border: none;

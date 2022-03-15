@@ -1,6 +1,16 @@
-export const CREATE_FORM = 'CREATE_FORM';
-export const DELETE_FORM = 'DELETE_FORM';
-export const SUBMIT_FORM = 'SUMBIT_FORM';
+export const CREATE_FORM = "CREATE_FORM";
+export const DELETE_FORM = "DELETE_FORM";
+export const SUBMIT_FORM = "SUMBIT_FORM";
+export const LOAD_FORM = "LOAD_FORM";
+
+export const loadForm = (fromdata) => {
+  return {
+    type: LOAD_FORM,
+    payload: {
+      fromdata,
+    },
+  };
+};
 
 export const createForm = ({ formId, title, formList }) => {
   return {

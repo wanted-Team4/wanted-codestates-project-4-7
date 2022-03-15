@@ -142,7 +142,7 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
 export default FieldHeader;
 
 const Container = styled.div`
-  width: 25rem;
+  width: 100%;
   height: 2rem;
   display: flex;
   margin: 0 auto;
@@ -165,27 +165,29 @@ const Input = styled.input`
   height: 100%;
   border: none;
   border-right: 1px solid #d1d1d1;
+  padding: 0;
 `;
 const LabelBox = styled.div`
   display: flex;
   align-items: center;
-  width: 30%;
+  width: 10rem;
   font-size: 14px;
   font-weight: bold;
+  background-color: #fff;
 `
 const CheckBox = styled.input`
   outline: 0;
-  padding: 0.3rem 0.6rem;
 `;
 const Label = styled.label`
-  padding: 0.25rem 0.4rem;
+  padding: 0.25rem 1rem;
   font-size: 0.9rem;
   font-weight: 500;
   border-right: 1px solid #d1d1d1;
 `;
 const DragBtn = styled.div`
-  padding: 0.4rem 0.8rem;
+  padding: 0.4rem 1rem 0.4rem 0.5rem;
   cursor: pointer;
+  background-color: #fff;
 `;
 const DeleteBtn = styled.div`
   padding: 0.3rem 0.5rem;
