@@ -9,17 +9,15 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { forms } = useSelector((state) => state.surveyReducer);
-  console.log(forms);
-  const removeCreatedForm = () => {
-    //액션으로 디스패치한다
-    //remove하는 리듀서를 가져온다
-  };
+  const state = useSelector((state) => state.surveyReducer); //데이터 확인용으로 넣었어요, 필요없으시면 삭제해주세요
+  console.log(state); //데이터 확인용으로 넣었어요, 필요없으시면 삭제해주세요
+
   return (
     <Container>
       <Head>
         <h1>생성된 폼 목록</h1>
         <span onClick={() => navigate('/create')}>
-          <i class="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus"></i>
         </span>
       </Head>
       {forms.map((el, i) => (
@@ -29,7 +27,7 @@ const Home = () => {
           </p>
           <div>
             <span onClick={() => navigate(`/submission/${forms[i].formId}`)}>
-              <i class="fa-solid fa-list"></i>
+              <i className="fa-solid fa-list"></i>
             </span>
             <span onClick={() => dispatch(deleteForm(forms[i].formId))}>
               <i class="fa-solid fa-trash-can"></i>
@@ -89,7 +87,6 @@ const FormItem = styled.div`
   }
   div {
     display: flex;
-  }
   }
   .fa-list {
     padding: 1.5rem 1rem;
