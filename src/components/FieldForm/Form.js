@@ -41,7 +41,6 @@ const Form = ({ setFormList, formList, form, idx }) => {
       e.target.parentNode.remove();
     }
   };
-  console.log(tagBox);
   return (
     <Container>
       <FieldHeader setFormList={setFormList} formList={formList} idx={idx} />
