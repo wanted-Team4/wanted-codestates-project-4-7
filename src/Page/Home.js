@@ -3,17 +3,15 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import styled from 'styled-components';
 import Submission from './Submission';
+import { deleteForm } from '../actions';
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { forms } = useSelector((state) => state.surveyReducer);
-  console.log(forms);
   const state = useSelector((state) => state.surveyReducer); //데이터 확인용으로 넣었어요, 필요없으시면 삭제해주세요
   console.log(state); //데이터 확인용으로 넣었어요, 필요없으시면 삭제해주세요
-  const removeCreatedForm = () => {
-    //액션으로 디스패치한다
-    //remove하는 리듀서를 가져온다
-  };
+
   return (
     <Container>
       <Head>
@@ -31,8 +29,8 @@ const Home = () => {
             <span onClick={() => navigate(`/submission/${forms[i].formId}`)}>
               <i className="fa-solid fa-list"></i>
             </span>
-            <span onClick={removeCreatedForm}>
-              <i className="fa-solid fa-trash-can"></i>
+            <span onClick={() => dispatch(deleteForm(forms[i].formId))}>
+              <i class="fa-solid fa-trash-can"></i>
             </span>
           </div>
         </FormItem>
