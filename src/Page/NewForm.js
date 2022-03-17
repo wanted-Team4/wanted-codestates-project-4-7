@@ -1,25 +1,38 @@
-import { useState, useRef } from 'react';
-import styled from 'styled-components';
-import Form from '../components/FieldForm/Form';
-import { useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { createForm } from '../actions/index';
-import shortId from 'shortid';
+import { useState, useRef, useCallback, useEffect } from "react";
+import styled from "styled-components";
+import Form from "../components/FieldForm/Form";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { createForm } from "../actions/index";
+import shortId from "shortid";
+import { DndProvider, useDrag } from "react-dnd";
+import { HTML5Backend } from "react-dnd-html5-backend";
 
-const initialState = {
-  id: 'name',
-  type: 'text',
-  required: false,
-  label: '',
-  description: '',
-};
+const initialState = [
+  {
+    id: "name",
+    type: "text",
+    required: true,
+    label: "이름",
+    placeholder: "주민등록상 이름 입력",
+    description: "설명영역",
+  },
+  {
+    id: "phone",
+    type: "phone",
+    required: true,
+    label: "휴대폰 번호",
+    placeholder: "",
+    description: "",
+  },
+];
 
 const formId = shortId.generate();
 
 const NewForm = () => {
   const titleRef = useRef();
-  const [formList, setFormList] = useState([initialState]);
-  const [title, setTitle] = useState('');
+  const [formList, setFormList] = useState(initialState);
+  const [title, setTitle] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -42,7 +55,7 @@ const NewForm = () => {
 
     for (let target of targets) {
       for (let e of target) {
-        if (e === '') return true;
+        if (e === "") return true;
         if (Array.isArray(e) && !e.length) return true;
       }
     }
@@ -50,35 +63,59 @@ const NewForm = () => {
   };
 
   const onSubmit = () => {
-    if (title === '' || !formList.length || checkEmpty(formList)) {
-      return alert('필수항목을 모두 입력해주세요.');
+    if (title === "" || !formList.length || checkEmpty(formList)) {
+      return alert("필수항목을 모두 입력해주세요.");
     }
     dispatch(createForm({ formId, title, formList }));
-    return navigate('/');
+    return navigate("/");
   };
+
+  const moveFormListItem = useCallback(
+    (dragIndex, hoverIndex) => {
+      if (typeof dragIndex == "undefined") return;
+      if (dragIndex === hoverIndex) return;
+      const dragItem = formList[dragIndex];
+      const hoverItem = formList[hoverIndex];
+      // Swap places of dragItem and hoverItem in the pets array
+      setFormList((forms) => {
+        const updatedForms = [...forms];
+        updatedForms[dragIndex] = hoverItem;
+        updatedForms[hoverIndex] = dragItem;
+        return updatedForms;
+      });
+    },
+    [formList]
+  );
+
+  useEffect(() => {
+    console.log(formList);
+  }, [formList]);
 
   return (
     <Container>
-      <InnerBox>
-        <HeaderText>폼 생성하기</HeaderText>
-        <Text>제목*</Text>
-        <TitleInput ref={titleRef} onChange={handleAddTitle} />
-        <Text>필드목록*</Text>
-        {formList.map((form, idx) => (
-          <Form
-            key={idx}
-            form={form}
-            formList={formList}
-            setFormList={setFormList}
-            idx={idx}
-          />
-        ))}
-        <SubmitBtn onClick={handleAddForm}>필드 추가하기</SubmitBtn>
-        <BtnBox>
-          <OpenBtn>폼 열기</OpenBtn>
-          <CreateBtn onClick={onSubmit}>저장하기</CreateBtn>
-        </BtnBox>
-      </InnerBox>
+      <DndProvider backend={HTML5Backend}>
+        <InnerBox>
+          <HeaderText>폼 생성하기</HeaderText>
+          <Text>제목*</Text>
+          <TitleInput ref={titleRef} onChange={handleAddTitle} />
+          <Text>필드목록*</Text>
+          {formList.map((form, idx) => (
+            <Form
+              key={idx}
+              form={form}
+              formList={formList}
+              setFormList={setFormList}
+              moveFormItem={moveFormListItem}
+              idx={idx}
+            />
+          ))}
+          <SubmitBtn onClick={handleAddForm}>필드 추가하기</SubmitBtn>
+          <BtnBox>
+            <OpenBtn>폼 열기</OpenBtn>
+            <CreateBtn onClick={onSubmit}>저장하기</CreateBtn>
+          </BtnBox>
+        </InnerBox>
+      </DndProvider>
     </Container>
   );
 };
