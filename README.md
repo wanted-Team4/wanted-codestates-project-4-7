@@ -11,7 +11,7 @@
 - [x] 생성된 폼
 - [x] 입력된 데이터 목록
 
-## 🧥 Code Convention
+## 🌏 Code Convention
 
 ### Getting Started
 
@@ -39,7 +39,7 @@ $ npx prettier --write .
 $ npm start
 ```
 
-### Commit Emoji
+### 🌏 Commit Emoji
 
 |   emoji    | commit message |       when to use it        |
 | :--------: | :------------: | :-------------------------: |
@@ -52,6 +52,8 @@ $ npm start
 |  :books:   |      Docs      | 그 외 문서 추가 및 업데이트 |
 
 ### <br/>
+
+## 🌏 Contribute
 
 |                        팀원                         |                    맡은역할                     |
 | :-------------------------------------------------: | :---------------------------------------------: |
