@@ -11,19 +11,19 @@ const TextEditor = ({ setFormList, idx, formList }) => {
   const [editorToHtml, setEditorToHTML] = useState(
     draftToHtml(convertToRaw(editorState.getCurrentContent()))
   );
-  const htmlToEditor = `초기 값`;
-  useEffect(() => {
-    const blocksFromHtml = htmlToDraft(htmlToEditor);
-    if (blocksFromHtml) {
-      const { contentBlocks, entityMap } = blocksFromHtml;
-      const contentState = ContentState.createFromBlockArray(
-        contentBlocks,
-        entityMap
-      );
-      const editorState = EditorState.createWithContent(contentState);
-      setEditorState(editorState);
-    }
-  }, []);
+  // const htmlToEditor = `초기 값`;
+  // useEffect(() => {
+  //   const blocksFromHtml = htmlToDraft(htmlToEditor);
+  //   if (blocksFromHtml) {
+  //     const { contentBlocks, entityMap } = blocksFromHtml;
+  //     const contentState = ContentState.createFromBlockArray(
+  //       contentBlocks,
+  //       entityMap
+  //     );
+  //     const editorState = EditorState.createWithContent(contentState);
+  //     setEditorState(editorState);
+  //   }
+  // }, []);
 
   useEffect(() => {
     setEditorToHTML(draftToHtml(convertToRaw(editorState.getCurrentContent())));
@@ -53,23 +53,23 @@ const TextEditor = ({ setFormList, idx, formList }) => {
     );
   }, [editorToHtml]);
 
-  useEffect(() => {
-    let blocksFromHtml;
-    if (Object.keys(formList[idx]).includes("contents")) {
-      blocksFromHtml = htmlToDraft(formList[idx].contents);
-    } else {
-      blocksFromHtml = htmlToDraft(formList[idx].description);
-    }
-    if (blocksFromHtml) {
-      const { contentBlocks, entityMap } = blocksFromHtml;
-      const contentState = ContentState.createFromBlockArray(
-        contentBlocks,
-        entityMap
-      );
-      const editorState = EditorState.createWithContent(contentState);
-      setEditorState(editorState);
-    }
-  }, [formList]);
+  // useEffect(() => {
+  //   let blocksFromHtml;
+  //   if (Object.keys(formList[idx]).includes("contents")) {
+  //     blocksFromHtml = htmlToDraft(formList[idx].contents);
+  //   } else {
+  //     blocksFromHtml = htmlToDraft(formList[idx].description);
+  //   }
+  //   if (blocksFromHtml) {
+  //     const { contentBlocks, entityMap } = blocksFromHtml;
+  //     const contentState = ContentState.createFromBlockArray(
+  //       contentBlocks,
+  //       entityMap
+  //     );
+  //     const editorState = EditorState.createWithContent(contentState);
+  //     setEditorState(editorState);
+  //   }
+  // }, [formList]);
 
   const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
