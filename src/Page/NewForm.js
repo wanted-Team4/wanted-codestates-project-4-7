@@ -8,30 +8,19 @@ import shortId from "shortid";
 import { DndProvider, useDrag } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
 
-const initialState = [
-  {
-    id: "name",
-    type: "text",
-    required: true,
-    label: "이름",
-    placeholder: "주민등록상 이름 입력",
-    description: "설명영역",
-  },
-  {
-    id: "phone",
-    type: "phone",
-    required: true,
-    label: "휴대폰 번호",
-    placeholder: "",
-    description: "",
-  },
-];
-
+const initialState = {
+  id: "name",
+  type: "text",
+  required: false,
+  label: "",
+  placeholder: "",
+  description: "",
+};
 const formId = shortId.generate();
 
 const NewForm = () => {
   const titleRef = useRef();
-  const [formList, setFormList] = useState(initialState);
+  const [formList, setFormList] = useState([initialState]);
   const [title, setTitle] = useState("");
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -87,10 +76,7 @@ const NewForm = () => {
     [formList]
   );
 
-  useEffect(() => {
-    console.log(formList);
-  }, [formList]);
-
+  console.log(formList);
   return (
     <Container>
       <DndProvider backend={HTML5Backend}>

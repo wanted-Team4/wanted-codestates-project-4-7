@@ -1,19 +1,18 @@
-import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
-import { loadForm } from '../actions/index';
-import styled from 'styled-components';
-import Submission from './Submission';
-import { deleteForm } from '../actions';
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import { loadForm } from "../actions/index";
+import styled from "styled-components";
+import Submission from "./Submission";
+import { deleteForm } from "../actions";
 
 const Home = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { forms } = useSelector((state) => state.surveyReducer);
-  console.log(forms);
 
   useEffect(() => {
-    const localData = localStorage.getItem('survey');
+    const localData = localStorage.getItem("survey");
     if (localData && localData !== JSON.stringify(forms)) {
       // local이 있으면 local을 redux로
       dispatch(loadForm(JSON.parse(localData).forms));
@@ -24,7 +23,7 @@ const Home = () => {
     <Container>
       <Head>
         <h1>생성된 폼 목록</h1>
-        <span onClick={() => navigate('/create')}>
+        <span onClick={() => navigate("/create")}>
           <i className="fa-solid fa-plus"></i>
         </span>
       </Head>

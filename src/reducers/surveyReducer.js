@@ -43,7 +43,7 @@ const kewordReducer = (state = initialState, action) => {
     }
     case SUBMIT_FORM: {
       const forms = state.forms.map((item) => {
-        if (item.formId === action.payload.formId) {
+        if (item.formId === Number(action.payload.formId)) {
           localStorage.setItem(
             "survey",
             JSON.stringify({

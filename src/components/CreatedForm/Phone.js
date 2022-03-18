@@ -1,14 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const Phone = ({
   label,
   placeholder,
   required,
   type,
-  onChange,
+  setData,
   description,
 }) => {
+  const onChange = (e) => {
+    setData((prev) => {
+      return { ...prev, phone: e.target.value };
+    });
+  };
   return (
     <InputBox>
       <label for="phone">{label}</label>
@@ -17,7 +22,7 @@ const Phone = ({
         type={type}
         id="phone"
         placeholder={placeholder}
-        onChange={(e) => onChange()}
+        onChange={(e) => onChange(e)}
       />
     </InputBox>
   );

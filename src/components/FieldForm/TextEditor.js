@@ -1,15 +1,15 @@
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
-import { EditorState, convertToRaw, ContentState } from 'draft-js';
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 import styled from "styled-components";
-import { useState, useEffect } from 'react';
-import draftToHtml from 'draftjs-to-html';
-import htmlToDraft from 'html-to-draftjs';
+import { useState, useEffect } from "react";
+import draftToHtml from "draftjs-to-html";
+import htmlToDraft from "html-to-draftjs";
 
 const TextEditor = ({ setFormList, idx, formList }) => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const [editorToHtml, setEditorToHTML] = useState(
-    draftToHtml(convertToRaw(editorState.getCurrentContent())),
+    draftToHtml(convertToRaw(editorState.getCurrentContent()))
   );
   const htmlToEditor = `초기 값`;
   useEffect(() => {
@@ -18,7 +18,7 @@ const TextEditor = ({ setFormList, idx, formList }) => {
       const { contentBlocks, entityMap } = blocksFromHtml;
       const contentState = ContentState.createFromBlockArray(
         contentBlocks,
-        entityMap,
+        entityMap
       );
       const editorState = EditorState.createWithContent(contentState);
       setEditorState(editorState);
@@ -49,13 +49,13 @@ const TextEditor = ({ setFormList, idx, formList }) => {
         }
         // }
         return list;
-      }),
+      })
     );
   }, [editorToHtml]);
 
   useEffect(() => {
     let blocksFromHtml;
-    if (Object.keys(formList[idx]).includes('contents')) {
+    if (Object.keys(formList[idx]).includes("contents")) {
       blocksFromHtml = htmlToDraft(formList[idx].contents);
     } else {
       blocksFromHtml = htmlToDraft(formList[idx].description);
@@ -64,14 +64,14 @@ const TextEditor = ({ setFormList, idx, formList }) => {
       const { contentBlocks, entityMap } = blocksFromHtml;
       const contentState = ContentState.createFromBlockArray(
         contentBlocks,
-        entityMap,
+        entityMap
       );
       const editorState = EditorState.createWithContent(contentState);
       setEditorState(editorState);
     }
   }, [formList]);
 
-  const onEditorStateChange = editorState => {
+  const onEditorStateChange = (editorState) => {
     setEditorState(editorState);
   };
 
@@ -90,7 +90,7 @@ const TextEditor = ({ setFormList, idx, formList }) => {
         placeholder="내용을 작성해주세요."
         // 한국어 설정
         localization={{
-          locale: 'ko',
+          locale: "ko",
         }}
         // 초기값 설정
         editorState={editorState}
@@ -99,16 +99,16 @@ const TextEditor = ({ setFormList, idx, formList }) => {
       />
     </Container>
   );
-}
+};
 
 export default TextEditor;
 
 const Container = styled.div`
   height: 8rem;
   margin-bottom: 1rem;
-  border-bottom: 1px solid #D1D1D1;
-  border-left: 1px solid #D1D1D1;
-  border-right: 1px solid #D1D1D1;
+  border-bottom: 1px solid #d1d1d1;
+  border-left: 1px solid #d1d1d1;
+  border-right: 1px solid #d1d1d1;
   background-color: #fff;
   border-radius: 10px;
   .wrapper-class {
@@ -157,7 +157,7 @@ const Container = styled.div`
   .rdw-image-wrapper {
     display: none;
   }
-  .rdw-editor-toolbar{
+  .rdw-editor-toolbar {
     margin-top: 0rem;
   }
-`
+`;

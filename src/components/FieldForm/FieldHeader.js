@@ -1,27 +1,24 @@
 import styled from "styled-components";
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback } from "react";
 
 const FieldHeader = ({ setFormList, idx, formList }) => {
   const labelRef = useRef();
   const checkboxRef = useRef();
-
   // 필드 삭제
   const handleDeleteField = (e) => {
     setFormList(
-      formList.filter(((list, i) => {
+      formList.filter((list, i) => {
         if (idx !== i) {
           delete list.type;
-          return { ...list, type: e.target.value }
+          return { ...list, type: e.target.value };
         }
-      }
-      ))
-    )
+      })
+    );
   };
-
 
   // 타입 변경
   const handleChangeSelect = (e) => {
-    const reset = field => {
+    const reset = (field) => {
       delete field.description;
       delete field.contents;
       delete field.option;
@@ -32,55 +29,66 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
       formList.map((field, i) => {
         if (idx === i) {
           reset(field);
-          if (e.target.value === 'text') {
+          if (e.target.value === "text") {
             return {
               ...field,
-              id: 'name',
+              id: "name",
               type: e.target.value,
-              placeholder: '',
-              description: '',
+              required: false,
+              label: "",
+              placeholder: "",
+              description: "",
             };
-          } else if (e.target.value === 'phone') {
+          } else if (e.target.value === "phone") {
             return {
               ...field,
-              id: 'phone',
+              id: "phone",
               type: e.target.value,
-              placeholder: '',
-              description: '',
+              required: false,
+              label: "",
+              placeholder: "",
+              description: "",
             };
-          } else if (e.target.value === 'address') {
+          } else if (e.target.value === "address") {
             return {
               ...field,
-              id: 'address',
+              id: "address",
               type: e.target.value,
-              description: '',
+              required: false,
+              label: "",
+              description: "",
             };
-          } else if (e.target.value === 'select') {
+          } else if (e.target.value === "select") {
             return {
               ...field,
-              id: 'input_0',
+              id: "input_0",
               type: e.target.value,
-              option: [],
-              description: '',
+              label: "",
+              options: [],
+              required: false,
+              description: "",
             };
-          } else if (e.target.value === 'file') {
+          } else if (e.target.value === "file") {
             return {
               ...field,
-              id: 'input_1',
+              id: "input_1",
               type: e.target.value,
-              description: '',
+              label: "",
+              required: false,
+              description: "",
             };
-          } else if (e.target.value === 'agreement') {
+          } else if (e.target.value === "agreement") {
             return {
               ...field,
-              id: 'agreement_0',
               type: e.target.value,
-              contents: '',
+              label: "",
+              required: false,
+              contents: "",
             };
           }
         }
         return field;
-      }),
+      })
     );
   };
 
@@ -92,7 +100,7 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
           return { ...list, label: e.target.value };
         }
         return list;
-      }),
+      })
     );
   };
 
@@ -104,7 +112,7 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
           return { ...list, required: e.target.checked };
         }
         return list;
-      }),
+      })
     );
   };
 
@@ -118,7 +126,12 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
         <Option value="file">첨부파일</Option>
         <Option value="agreement">이용약관</Option>
       </Select>
-      <Input type="text" ref={labelRef} onChange={handleChangeLabel} />
+      <Input
+        type="text"
+        ref={labelRef}
+        value={formList[idx].label}
+        onChange={handleChangeLabel}
+      />
       <LabelBox>
         <Label>
           <CheckBox
@@ -126,13 +139,17 @@ const FieldHeader = ({ setFormList, idx, formList }) => {
             ref={checkboxRef}
             onChange={handleChangeCheckbox}
             checked={formList.required}
-            id={'required_' + idx}
+            id={"required_" + idx}
           />
           필수
         </Label>
       </LabelBox>
-      <DragBtn><i className="fa-solid fa-arrows-up-down"></i></DragBtn>
-      <DeleteBtn onClick={handleDeleteField}><i className="fa-solid fa-xmark"></i></DeleteBtn>
+      <DragBtn>
+        <i className="fa-solid fa-arrows-up-down"></i>
+      </DragBtn>
+      <DeleteBtn onClick={handleDeleteField}>
+        <i className="fa-solid fa-xmark"></i>
+      </DeleteBtn>
     </Container>
   );
 };
@@ -172,7 +189,7 @@ const LabelBox = styled.div`
   font-size: 14px;
   font-weight: bold;
   background-color: #fff;
-`
+`;
 const CheckBox = styled.input`
   outline: 0;
 `;
