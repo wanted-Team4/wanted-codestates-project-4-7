@@ -100,7 +100,7 @@ const Form = ({ setFormList, formList, form, idx, moveFormItem }) => {
           value={formList[idx].placeholder}
         />
       ) : form.type === "select" ? (
-        <>
+        <TagContainer>
           {tagBox.map((tag, i) => {
             return (
               <TextBox key={i}>
@@ -116,7 +116,7 @@ const Form = ({ setFormList, formList, form, idx, moveFormItem }) => {
             onKeyUp={onKeyUp}
             value={tagText}
           />
-        </>
+        </TagContainer>
       ) : null}
       <TextEditor setFormList={setFormList} formList={formList} idx={idx} />
     </Container>
@@ -140,11 +140,17 @@ const Input = styled.input`
   outline: 0;
   border: 1px solid #d1d1d1;
 `;
+const TagContainer = styled.div`
+  background-color: #fff;
+  border-top: 1px solid #d1d1d1;
+  border-left: 1px solid #d1d1d1;
+  border-right: 1px solid #d1d1d1;
+`
 const TextBox = styled.div`
   display: inline-block;
   text-align: center;
   width: auto;
-  height: 25px;
+  height: 20px;
   border: none;
   border-radius: 5px;
   padding: 2px;
@@ -152,15 +158,15 @@ const TextBox = styled.div`
   margin: 2px 5px;
   flex-wrap: wrap-reverse;
   order: 1;
-  border: 1px solid #d1d1d1;
+  background-color: #fff;
 `;
 const TagBtn = styled.div`
   display: inline-block;
   border: red 1px solid;
   background-color: white;
   color: red;
-  width: 19px;
-  height: 19px;
+  width: 13px;
+  height: 13px;
   margin: 0px 3px;
   border-radius: 50%;
   text-align: center;

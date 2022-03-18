@@ -39,6 +39,7 @@ const NewForm = () => {
       const tempField = { ...field };
       delete tempField.description;
       delete tempField.placeholder;
+      delete tempField.options;
       return Object.values(tempField);
     });
 
