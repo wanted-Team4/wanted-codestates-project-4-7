@@ -10,7 +10,7 @@ const Select = ({ description, label, required, options, setData }) => {
   return (
     <SelectBox>
       <label>{label}</label>
-      <p>{description}</p>
+      <p dangerouslySetInnerHTML={{ __html: description }}></p>
       <select onChange={(e) => onChange(e)}>
         {options.map((el, i) => (
           <option key={i}>{el}</option>

@@ -34,7 +34,7 @@ const File = ({
   return (
     <InputBox>
       <span for="file">{label}</span>
-      <p>{description}</p>
+      <p dangerouslySetInnerHTML={{ __html: description }}></p>
 
       <label for="file" class="boxlabel">
         <i className="fa-solid fa-plus"></i>

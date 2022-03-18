@@ -32,22 +32,22 @@ const TextEditor = ({ setFormList, idx, formList }) => {
   useEffect(() => {
     setFormList(
       formList.map((list, i) => {
-        // if (list.type === 'agreement') {
-        //   //이용약관일 경우
-        //   if (idx === i) {
-        //     return {
-        //       ...list,
-        //       contents: editorToHtml,
-        //     };
-        //   }
-        // } else {
-        if (idx === i) {
-          return {
-            ...list,
-            description: editorToHtml,
-          };
+        if (list.type === 'agreement') {
+          //이용약관일 경우
+          if (idx === i) {
+            return {
+              ...list,
+              contents: editorToHtml,
+            };
+          }
+        } else {
+          if (idx === i) {
+            return {
+              ...list,
+              description: editorToHtml,
+            };
+          }
         }
-        // }
         return list;
       })
     );

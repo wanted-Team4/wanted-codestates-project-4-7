@@ -4,7 +4,7 @@ const Address = ({ label, required, description, onClick, address }) => {
   return (
     <InputBox>
       <label for="address">{label}</label>
-      <span>{description}</span>
+      <span dangerouslySetInnerHTML={{ __html: description }}></span>
       <input value={address} onClick={onClick} />
     </InputBox>
   );

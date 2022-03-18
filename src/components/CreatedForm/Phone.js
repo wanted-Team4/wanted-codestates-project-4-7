@@ -17,7 +17,7 @@ const Phone = ({
   return (
     <InputBox>
       <label for="phone">{label}</label>
-      <p>{description}</p>
+      <p dangerouslySetInnerHTML={{ __html: description }}></p>
       <input
         type={type}
         id="phone"

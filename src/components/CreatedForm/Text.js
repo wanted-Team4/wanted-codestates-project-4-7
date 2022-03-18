@@ -10,7 +10,7 @@ const Text = ({ label, placeholder, required, type, description, setData }) => {
   return (
     <InputBox>
       <label for="name">{label}</label>
-      <p>{description}</p>
+      <p dangerouslySetInnerHTML={{ __html: description }}></p>
       <input
         type={type}
         id="name"
