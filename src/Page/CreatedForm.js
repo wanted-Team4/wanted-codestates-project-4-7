@@ -7,47 +7,48 @@
 // 6. 제출버튼 누르면 디스패치가 데이터 등록
 // 7. 예제폼 클릭시 에러해결
 
-import React, { useState } from "react";
-import styled from "styled-components";
-import { useSelector, useDispatch } from "react-redux";
-import { useLocation } from "react-router-dom";
-import { submitForm } from "../actions/index";
-import axios from "axios";
+import React, { useState } from 'react';
+import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { submitForm } from '../actions/index';
+import axios from 'axios';
 
-import Postcode from "../components/Postcode";
-import Text from "../components/CreatedForm/Text";
-import Phone from "../components/CreatedForm/Phone";
-import Address from "../components/CreatedForm/Address";
-import File from "../components/CreatedForm/File";
-import Select from "../components/CreatedForm/Select";
+import Postcode from '../components/Postcode';
+import Text from '../components/CreatedForm/Text';
+import Phone from '../components/CreatedForm/Phone';
+import Address from '../components/CreatedForm/Address';
+import File from '../components/CreatedForm/File';
+import Select from '../components/CreatedForm/Select';
 
 const CreatedForm = () => {
   const dispatch = useDispatch();
 
   //* 현재폼의 전체 데이터 가져오는 로직
   const location = useLocation();
-  const path = location.pathname.split("/");
+  const path = location.pathname.split('/');
   const currentFormId = path[path.length - 1];
   const { forms } = useSelector((state) => state.surveyReducer);
   const [currentForms] = forms.filter((el) => el.formId == currentFormId);
   const { formList, submitData, title } = currentForms;
 
   //* 현재폼의 필드별 데이터 가져오는 로직
-  const [text] = formList.filter((el) => el.id === "name");
-  const [phone] = formList.filter((el) => el.id === "phone");
-  const [address] = formList.filter((el) => el.id === "address");
-  const [select] = formList.filter((el) => el.id === "input_0");
-  const [img] = formList.filter((el) => el.id === "input_1");
+  const [text] = formList.filter((el) => el.id === 'name');
+  const [phone] = formList.filter((el) => el.id === 'phone');
+  const [address] = formList.filter((el) => el.id === 'address');
+  const [select] = formList.filter((el) => el.id === 'input_0');
+  const [img] = formList.filter((el) => el.id === 'input_1');
+  const [agreement] = formList.filter((el) => el.id === 'agreement_0');
 
   //* 주소 클릭시 postCode열림 상태관리
   //TODO! post가 모달형태로 열린다고 생각하고 일단 상태만 추가
   const [postOpen, setPostOpen] = useState(false);
   const [data, setData] = useState({
-    name: "",
-    phone: "",
-    address: "",
-    input_0: "",
-    input_1: "",
+    name: '',
+    phone: '',
+    address: '',
+    input_0: '',
+    input_1: '',
     agreement_0: 0,
   });
 
@@ -59,17 +60,17 @@ const CreatedForm = () => {
   //* 파일 저장 및 업로드 로직
   //TODO! 혹시 분리가능하면, 컴포넌트 > CreatedForm > File로 분리
   const [file, setFile] = useState();
-  const [fileName, setFileName] = useState("");
+  const [fileName, setFileName] = useState('');
   const saveFile = (e) => {
     setFile(e.target.files[0]);
     setFileName(e.target.files[0].name);
   };
   const uploadFile = async (e) => {
     const formData = new FormData();
-    formData.append("file", file);
-    formData.append("fileName", fileName);
+    formData.append('file', file);
+    formData.append('fileName', fileName);
     try {
-      const res = await axios.post("http://localhost:3000/upload", formData);
+      const res = await axios.post('http://localhost:3000/upload', formData);
       console.log(res);
     } catch (ex) {
       console.log(ex);
@@ -85,7 +86,7 @@ const CreatedForm = () => {
       //uploadFile(e);
       dispatch(submitForm(currentFormId, data));
     } catch {
-      alert("제출실패");
+      alert('제출실패');
     }
   };
 
@@ -143,7 +144,7 @@ const CreatedForm = () => {
           </label>
           <input type="file" id="file" onChange={saveFile} />
         </File> */}
-        {img ? (
+        {select ? (
           <Select
             label={select.label}
             required={select.required}

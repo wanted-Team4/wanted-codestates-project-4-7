@@ -1,8 +1,15 @@
-import React, { useState } from "react";
-import styled from "styled-components";
+import React, { useState } from 'react';
+import styled from 'styled-components';
 // import axios from 'axios';
 
-const File = ({ label, placeholder, required, type, onChange }) => {
+const File = ({
+  label,
+  placeholder,
+  required,
+  type,
+  onChange,
+  description,
+}) => {
   // const [file, setFile] = useState();
   // const [fileName, setFileName] = useState('');
 
@@ -26,10 +33,12 @@ const File = ({ label, placeholder, required, type, onChange }) => {
 
   return (
     <InputBox>
-      <label for="file">
+      <span for="file">{label}</span>
+      <p>{description}</p>
+
+      <label for="file" class="boxlabel">
         <i className="fa-solid fa-plus"></i>
         <span>눌러서 파일 등록</span>
-        <span>{label}</span>
       </label>
       <input type="file" id="file" onChange={onChange} />
     </InputBox>
@@ -39,10 +48,12 @@ const File = ({ label, placeholder, required, type, onChange }) => {
 export default File;
 
 const InputBox = styled.div`
-  position: relative;
-  height: 100px;
-  label {
-    position: absolute;
+  span {
+    font-size: 12.8px;
+    font-weight: 500;
+  }
+  .boxlabel {
+    padding: 5px;
     z-index: 1;
     width: 100%;
     height: 100%;
