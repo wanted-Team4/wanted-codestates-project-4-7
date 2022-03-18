@@ -1,14 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 
-const Text = ({
-  label,
-  placeholder,
-  required,
-  type,
-  onChange,
-  description,
-}) => {
+const Text = ({ label, placeholder, required, type, description, setData }) => {
+  const onChange = (e) => {
+    setData((prev) => {
+      return { ...prev, name: e.target.value };
+    });
+  };
   return (
     <InputBox>
       <label for="name">{label}</label>
@@ -17,7 +15,7 @@ const Text = ({
         type={type}
         id="name"
         placeholder={placeholder}
-        onChange={(e) => onChange()}
+        onChange={(e) => onChange(e)}
       />
     </InputBox>
   );

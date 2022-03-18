@@ -1,14 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
-const Select = ({ description, label, required, option }) => {
+const Select = ({ description, label, required, options, setData }) => {
+  const onChange = (e) => {
+    setData((prev) => {
+      return { ...prev, input_0: e.target.value };
+    });
+  };
   return (
     <SelectBox>
       <label>{label}</label>
       <p>{description}</p>
-      <select>
-        {option.map((el, i) => (
-          <option key={i}>{option[i]}</option>
+      <select onChange={(e) => onChange(e)}>
+        {options.map((el, i) => (
+          <option key={i}>{el}</option>
         ))}
       </select>
     </SelectBox>

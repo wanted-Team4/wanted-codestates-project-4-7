@@ -51,7 +51,6 @@ const Form = ({ setFormList, formList, form, idx, moveFormItem }) => {
 
   const removes = (e) => {
     if (e.target.innerText === "X") {
-      console.log("실행");
       e.target.parentNode.remove();
     }
   };
@@ -98,6 +97,7 @@ const Form = ({ setFormList, formList, form, idx, moveFormItem }) => {
           ref={labelRef}
           onChange={handleChangePlaceholder}
           placeholder="예시를 입력해주세요."
+          value={formList[idx].placeholder}
         />
       ) : form.type === "select" ? (
         <>

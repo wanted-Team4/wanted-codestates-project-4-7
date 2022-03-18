@@ -1,12 +1,11 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-
-const Address = ({ label, required, onChange, description, _onClick }) => {
+import React, { useState } from "react";
+import styled from "styled-components";
+const Address = ({ label, required, description, onClick, address }) => {
   return (
     <InputBox>
-      <label for="phone">{label}</label>
+      <label for="address">{label}</label>
       <span>{description}</span>
-      <input onClick={_onClick} />
+      <input value={address} onClick={onClick} />
     </InputBox>
   );
 };

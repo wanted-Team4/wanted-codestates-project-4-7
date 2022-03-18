@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
+import React, { useState } from "react";
+import styled from "styled-components";
 // import axios from 'axios';
 
 const File = ({ label, placeholder, required, type, onChange }) => {
@@ -26,7 +26,7 @@ const File = ({ label, placeholder, required, type, onChange }) => {
 
   return (
     <InputBox>
-      <label for="phone">
+      <label for="file">
         <i className="fa-solid fa-plus"></i>
         <span>눌러서 파일 등록</span>
         <span>{label}</span>
@@ -43,6 +43,7 @@ const InputBox = styled.div`
   height: 100px;
   label {
     position: absolute;
+    z-index: 1;
     width: 100%;
     height: 100%;
     border: none;
